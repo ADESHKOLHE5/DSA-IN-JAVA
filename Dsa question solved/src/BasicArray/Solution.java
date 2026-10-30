@@ -41,4 +41,22 @@ public class Solution {
         }
         return true;
     }
+
+    //reverse array
+    public void reverse(int[] arr, int n) {
+            int left = 0;
+            int right =n - 1;
+            while(left < right){
+                int temp = arr[left];
+                arr[left] = arr[right];
+                arr[right] = temp;
+                left++;
+                right--;
+            }
+            for(int i : arr)
+                System.out.print(i);
+
+    }
+
+
 }
