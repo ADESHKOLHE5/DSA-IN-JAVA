@@ -1,5 +1,7 @@
 package BasicString2;
 
+import java.util.Arrays;
+
 public class StingLeetcodeBasic {
        //Reverse a string
         public void reverseString(char[] s) {
@@ -55,4 +57,19 @@ public class StingLeetcodeBasic {
         }
         return "";
     }
+    //longest common prefix
+    public String longestCommonPrefix(String[] strs) {
+            Arrays.sort(strs);
+            String first =strs[0];
+            String last =strs[strs.length - 1];
+            int i;
+            for(i=0; i<first.length() && i<last.length(); i++){
+                if(first.charAt(i)!=last.charAt(i))
+                    break;
+            }
+            return first.substring(0,i);
+
+        }
+
+
 }
