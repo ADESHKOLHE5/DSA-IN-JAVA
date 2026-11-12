@@ -1,4 +1,4 @@
-package SearchingAlgo;
+package SearchingAlgo.BinarySearches;
 
 public class BinarySearch {
     public static int search(int[] arr, int target) {

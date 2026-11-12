@@ -99,9 +99,8 @@ public class Solution {
 //        System.out.println(tp);
 
         for(int i=0;i<n;i++){
-            int curr =arr[i];
             for(int j=i+1;j<n;j++){
-                System.out.print("("+curr+","+arr[j] +")");
+                System.out.print("("+arr[i]+","+arr[j] +")");
             }
             System.out.println();
         }
@@ -110,6 +109,7 @@ public class Solution {
         arr[0] = 1;
     }
     //print subArray
+    //brute force
     public static void printSubArray(int [] arr,int n){
         //total subarray
         int ts =0;
@@ -125,16 +125,68 @@ public class Solution {
         }
         System.out.println("Total SubArray : "+ts);
     }
+    //sum of subArray and find maximum sum of between them
+    public static void printSubArraySum(int [] arr,int n){
+        int maxSum = Integer.MIN_VALUE;
+        for(int i=0;i<n;i++){
+            for(int j=i;j<n;j++) {
+                int currentSum =0;
+                 for(int k = i; k <= j; k++) {
+                     currentSum += arr[k];
+                 }
+                //System.out.println(currentSum);
+                 maxSum = Math.max(currentSum, maxSum);
+            }
+
+        }
+        System.out.println("MAX SUM : "+maxSum);
+    }
+
+    public static void LeftRotateOnes(int[] nums,int n){
+        int first =nums[0];
+        for(int i=1; i<n;i++){
+            nums[i-1]=nums[i];
+        }
+        nums[n-1]=first;
+    }
+    //brute force 189 rotate and array k times 
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+
+        if (n <= 1) return;
+        k = k % n;
+
+        for (int i = 0; i < k; i++) {
+            int last = nums[n - 1];
+            for (int j = n - 1; j > 0; j--) {
+                nums[j] = nums[j - 1];
+            }
+            nums[0] = last;
+        }
+    }
+
+    //leetcode 26 remove duplicate from sorted array
+    public int removeDuplicates(int[] nums) {
+        int j = 0, n=nums.length;
+        for (int i = 1; i < n; i++) {
+            if (nums[i] != nums[j]) {
+                j++;
+                nums[j] = nums[i];
+            }
+        }
+        return j + 1;
+    }
+
 
     public static void main(String[] args) {
         int [] arr ={2,4,6,8,10};
-        int [] arr1 ={24,21,15,28,45,45};
-        int value = FindSecondLargest(arr1,arr1.length);
-        System.out.println("Second Largest : "+value);
-//        for(int i : arr)
-//            System.out.print(i + " ");
+        int [] arr1 ={24,21,15,28,45};
+        LeftRotateOnes(arr1,arr1.length);
+        //System.out.println("Second Largest : "+value);
+        for(int i : arr1)
+            System.out.print(i + " ");
 
-       // printSubArray(arr,arr.length);
+        //printSubArraySum(arr,arr.length);
     }
 
 
