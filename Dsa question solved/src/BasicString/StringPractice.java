@@ -90,20 +90,11 @@ public class StringPractice {
     // 7. Check whether a string is a palindrome
     static boolean isPalindrome(String str) {
         str = str.toLowerCase();
-
-        int left = 0;
-        int right = str.length() - 1;
-
-        // Compare characters from both ends
-        while (left < right) {
-            if (str.charAt(left) != str.charAt(right)) {
+        int n = str.length();
+        for (int i = 0; i < n / 2; i++) {
+            if (str.charAt(i) != str.charAt(n - i - 1))
                 return false;
-            }
-
-            left++;
-            right--;
         }
-
         return true;
     }
 
@@ -171,11 +162,57 @@ public class StringPractice {
     static boolean compareStrings(String str1, String str2) {
         return str1.equalsIgnoreCase(str2);
     }
-
+    public static float shortestPath(String s) {
+        int x=0,y=0;
+        int n=s.length();
+        for (int i = 0; i < n; i++) {
+            char direction = s.charAt(i);
+            if (direction == 'N') {
+                y++;
+            }
+            else if (direction == 'S') {
+                y--;
+            }
+            else if (direction == 'E') {
+              x++;
+            }
+            else{
+                y--;
+            }
+        }
+        int x2=x*x;
+        int y2=y*y;
+        return (float) Math.sqrt(x2+y2);
+    }
+   public static String largestDexographic(String [] arr) {
+        String largest = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i].compareTo(largest) > 0) {
+                largest = arr[i];
+            }
+        }
+        return largest;
+   }
+    //lee 58 length of last word
+    public int lengthOfLastWord(String s){
+        String str = s.trim();
+        int n=str.length();
+        int count =0;
+        for (int i = n - 1; i >= 0; i--) {
+            if (str.charAt(i) != ' ')
+                count++;
+            else
+                break;
+        }
+        return count;
+    }
     // Main method: execution starts here
     public static void main(String[] args) {
         String str = "Hello Java 123";
-
+        String str1 = "WNEENESENNN";
+        String [] fruits ={"apple","banana","mango","greps"};
+        System.out.println(largestDexographic(fruits));
+        System.out.println("Shortest Path: " + shortestPath(str1));
         System.out.println("Original String: " + str);
         System.out.println("Reverse: " + reverseString(str));
         System.out.println("Character count: " + countCharacters(str));
@@ -192,5 +229,6 @@ public class StringPractice {
         System.out.println("Strings equal: "
                 + compareStrings("Java", "JAVA"));
     }
+
 }
 
